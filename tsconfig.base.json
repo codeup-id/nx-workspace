@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@up-code/directus-sdk-api": ["packages/directus-sdk-api/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

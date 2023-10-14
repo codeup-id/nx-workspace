@@ -1,0 +1,33 @@
+{
+  "name": "directus-sdk-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/directus-sdk-api/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/directus-sdk-api",
+        "main": "packages/directus-sdk-api/src/index.ts",
+        "tsConfig": "packages/directus-sdk-api/tsconfig.lib.json",
+        "assets": ["packages/directus-sdk-api/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs directus-sdk-api {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/directus-sdk-api/**/*.ts",
+          "packages/directus-sdk-api/package.json"
+        ]
+      }
+    }
+  },
+  "tags": ["directus", "api"]
+}

@@ -13,6 +13,7 @@
     "@nx/next": "16.10.0",
     "@nx/react": "16.10.0",
     "@nx/workspace": "16.10.0",
+    "@tailwindcss/typography": "^0.5.10",
     "@testing-library/react": "14.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "18.14.2",
@@ -44,6 +45,7 @@
   },
   "dependencies": {
     "@directus/sdk": "^12.0.1",
+    "clsx": "^2.0.0",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

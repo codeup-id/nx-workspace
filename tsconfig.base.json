@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "#www/*": ["apps/www/*"],
       "@up-code/directus-sdk-api": ["packages/directus-sdk-api/src/index.ts"]
     }
   },

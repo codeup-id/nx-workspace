@@ -1,6 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/react/tailwind');
 const { join } = require('path');
-
+const { fontFamily } = require('tailwindcss/defaultTheme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,8 +10,34 @@ module.exports = {
     ),
     ...createGlobPatternsForDependencies(__dirname),
   ],
+
+  darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        base: '#f2f2f2',
+        primary: '#0d9488',
+      },
+      // container: {
+      //   padding: {
+      //     DEFAULT: '1rem',
+      //     sm: '2rem',
+      //     lg: '4rem',
+      //     xl: '5rem',
+      //     '2xl': '6rem',
+      //   },
+      // },
+
+      fontFamily: {
+        default: ['var(--font-inter)', ...fontFamily.sans],
+        mono: ['Consolas', ...fontFamily.mono],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

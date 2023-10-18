@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "#www/*": ["apps/www/*"],
+      "#bio/*": ["apps/bio/*"],
       "@up-code/directus-sdk-api": ["packages/directus-sdk-api/src/index.ts"]
     }
   },

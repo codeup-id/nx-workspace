@@ -2,9 +2,15 @@
   "name": "@up-code/directus-sdk-api",
   "version": "0.0.1",
   "dependencies": {
+    "@directus/sdk": "^12.0.1",
+    "@directus/types": "^10.1.6",
+    "pluralize": "^8.0.0",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "typings": "./src/index.d.ts",
+  "devDependencies": {
+    "@types/pluralize": "^0.0.31"
+  }
 }

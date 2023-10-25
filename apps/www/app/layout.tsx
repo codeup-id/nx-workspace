@@ -2,7 +2,7 @@ import '#www/styles/globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import clsx from 'clsx';
-import MainFooter from '#www/components/footer/main-footer';
+import Provider from './provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,7 +21,6 @@ export default function RootLayout({
       <body className={clsx(inter.className)}>
         <div className="flex flex-col min-h-screen justify-between">
           {children}
-          <MainFooter />
         </div>
       </body>
     </html>

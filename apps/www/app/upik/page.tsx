@@ -1,3 +1,4 @@
+import MainFooter from '#www/components/footer/main-footer';
 import MainHeader from '#www/components/header/main-header';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -170,6 +171,7 @@ export default function ProfilPage() {
           </div>
         </div>
       </main>
+      <MainFooter />
     </>
   );
 }

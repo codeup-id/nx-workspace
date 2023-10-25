@@ -1,3 +1,4 @@
+import MainFooter from '#www/components/footer/main-footer';
 import MainHeader from '#www/components/header/main-header';
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <MainFooter />
     </>
   );
 }

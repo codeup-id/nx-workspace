@@ -1,0 +1,50 @@
+{
+  "name": "next-base",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/next-base/src",
+  "projectType": "library",
+  "tags": ["next"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/next-base/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/next-base",
+        "tsConfig": "packages/next-base/tsconfig.lib.json",
+        "project": "packages/next-base/package.json",
+        "entryFile": "packages/next-base/src/index.ts",
+        "additionalEntryPoints": [
+          "packages/next-base/src/api.ts",
+          "packages/next-base/src/server.ts",
+          "packages/next-base/src/client.ts",
+          "packages/next-base/src/init.ts"
+        ],
+        "generateExportsField": true,
+        "external": ["react", "react-dom", "react/jsx-runtime"],
+        "rollupConfig": "@nx/react/plugins/bundle-rollup",
+        "compiler": "swc",
+        "assets": [
+          {
+            "glob": "packages/next-base/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "create-api-schemas": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "ts-node -T packages/directus-sdk-api/schema-generator/index.ts packages/next-base/src/api-schemas.d.ts"
+      }
+    }
+  }
+}

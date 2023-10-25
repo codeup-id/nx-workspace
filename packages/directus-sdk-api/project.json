@@ -27,6 +27,14 @@
           "packages/directus-sdk-api/package.json"
         ]
       }
+    },
+    "create-schemas": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "cwd": "packages/directus-sdk-api/schema-generator",
+        "command": "ts-node -T index.ts"
+      }
     }
   },
   "tags": ["directus", "api"]

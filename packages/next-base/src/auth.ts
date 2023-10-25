@@ -16,13 +16,14 @@ import { randomUUID } from 'crypto';
 
 const decodeBackendAccessToken = (accessToken: string) =>
   JSON.parse(Buffer.from(accessToken.split('.')[1], 'base64').toString());
+
 const createUserToken = async (userId: string): Promise<User | null> => {
   const token = Buffer.from(`${Date.now()}-${randomUUID()}`).toString(
     'base64url'
   );
   try {
     const user = await directusClientBackendRest().request(
-      updateUser(userId, { token })
+      updateUser(userId, { token }, { fields: ['id', 'email'] })
     );
     return {
       id: user.id,
@@ -33,6 +34,7 @@ const createUserToken = async (userId: string): Promise<User | null> => {
     return null;
   }
 };
+
 export const authOptions: NextAuthOptions = {
   ...authOptionsBase,
   secret: process.env.NEXTAUTH_SECRET,
@@ -100,10 +102,10 @@ export const authOptions: NextAuthOptions = {
         const { email } = profile;
         if (email) {
           const user = await directusClientBackendRest().request(
-            readUsers({ filter: { email } })
+            readUsers({ fields: ['id', 'email'], filter: { email } })
           );
           if (user && user[0]) {
-            return await createUserToken((user[0] as any).id);
+            return await createUserToken(user[0].id);
           }
         }
       },

@@ -1,12 +1,8 @@
-import { getToken } from 'next-auth/jwt';
-import { authOptionsBase, getLoginUrl } from '@up-code/next-base/init';
 import { NextRequest, NextResponse } from 'next/server';
+import { getAuthToken, getLoginUrl } from '@up-code/next-base/init';
 
 export default async function middleware(req: NextRequest) {
-  const token = await getToken({
-    req,
-    cookieName: authOptionsBase.cookies?.sessionToken?.name,
-  });
+  const token = await getAuthToken(req);
   const pathname = req.nextUrl.pathname;
 
   if (pathname !== '/') {
@@ -23,7 +19,3 @@ export default async function middleware(req: NextRequest) {
   }
   return NextResponse.next();
 }
-
-export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
-};

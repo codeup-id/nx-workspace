@@ -1,4 +1,6 @@
-import { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
+import type { NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
 export const DOMAIN_ROOT = process.env.DOMAIN_ROOT ?? 'codeup.id';
 
@@ -85,4 +87,13 @@ export const getLogoutUrl = ({ callbackUrl }: { callbackUrl: string }) => {
   url.pathname = '/api/auth/signout';
   url.search = new URLSearchParams({ callbackUrl }).toString();
   return url.toString();
+};
+
+export const getAuthToken = (req: NextRequest) => {
+  return getToken({
+    req,
+    secret: authOptionsBase.secret,
+    cookieName: authOptionsBase.cookies?.sessionToken?.name,
+    secureCookie: authOptionsBase.cookies?.sessionToken?.options.secure,
+  });
 };

@@ -1,1 +1,1 @@
-export * from './lib/directus-sdk-api';
+export * from './resource';
